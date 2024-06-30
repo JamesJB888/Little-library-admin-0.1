@@ -1,0 +1,105 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap');
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #002147;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar .form-control {
+  max-width: 300px;
+}
+
+.sidebar {
+  background-color: #fff;
+  border-right: 1px solid #dee2e6;
+  height: 100vh;
+  position: fixed;
+  padding-top: 20px;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.profile-card {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+  margin: 0 20px 20px 20px;
+}
+
+.profile-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 20px;
+}
+
+.menu-list li {
+  padding: 10px 0;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #212529;
+  display: block;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.menu-list li a:hover, .menu-list li a.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+.btn-change-file {
+  background-color: #002147;
+  color: white;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.table-container .table {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-container .table th {
+  background-color: #002147;
+  color: white;
+}
+
+.table-container .table tbody tr:hover {
+  background-color: #f1f1f1;
+}
