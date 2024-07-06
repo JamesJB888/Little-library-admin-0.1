@@ -79,6 +79,19 @@ body {
   padding: 20px;
 }
 
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #002147;
+  color: white;
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
 .btn-change-file {
   background-color: #002147;
   color: white;
