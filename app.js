@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB5MHSeMlRY1TlXCQ1buIoRNZWGLyskxok",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app); // Initialize Firebase Storage
 const table = document.getElementById("table");
 const form = document.getElementById("addForm");
 
@@ -37,7 +39,8 @@ function showData(Admin) {
     const FirstnameCol = row.insertCell(3);
     const LastnameCol = row.insertCell(4);
     const RoleCol = row.insertCell(5);
-    const ActionCol = row.insertCell(6); // Add column for actions
+    const PhotoCol = row.insertCell(6);
+    const ActionCol = row.insertCell(7); // Add column for actions
 
     TitleCol.innerHTML = Admin.data().Title;
     UsernameCol.innerHTML = Admin.data().Username;
@@ -45,6 +48,7 @@ function showData(Admin) {
     FirstnameCol.innerHTML = Admin.data().Firstname;
     LastnameCol.innerHTML = Admin.data().Lastname;
     RoleCol.innerHTML = Admin.data().Role;
+    PhotoCol.innerHTML = `<img src="${Admin.data().PhotoURL}" alt="Photo" width="50" height="50">`;
 
     // Add delete button
     const deleteButton = document.createElement('button');
@@ -90,6 +94,12 @@ form.addEventListener('submit', async (e) => {
     const firstname = form.querySelector('#firstname').value;
     const lastname = form.querySelector('#lastname').value;
     const role = form.querySelector('#role').value;
+    const photoFile = form.querySelector('#photo').files[0];
+
+    // Upload photo to Firebase Storage
+    const photoRef = ref(storage, `photos/${photoFile.name}`);
+    await uploadBytes(photoRef, photoFile);
+    const photoURL = await getDownloadURL(photoRef);
 
     await addDoc(collection(db, 'Admin'), {
       Title: title,
@@ -97,7 +107,8 @@ form.addEventListener('submit', async (e) => {
       Email: email,
       Firstname: firstname,
       Lastname: lastname,
-      Role: role
+      Role: role,
+      PhotoURL: photoURL
     });
 
     form.reset();
